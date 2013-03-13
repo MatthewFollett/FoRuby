@@ -1,0 +1,27 @@
+<h1>Listing message_threads</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Forum</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @message_threads.each do |message_thread| %>
+  <tr>
+    <td><%= message_thread.title %></td>
+    <td><%= message_thread.author_id %></td>
+    <td><%= message_thread.forum_id %></td>
+    <td><%= link_to 'Show', message_thread %></td>
+    <td><%= link_to 'Edit', edit_message_thread_path(message_thread) %></td>
+    <td><%= link_to 'Destroy', message_thread, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message thread', new_message_thread_path %>

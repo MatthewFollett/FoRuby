@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @message_post.content %>
+</p>
+
+<p>
+  <b>Thread:</b>
+  <%= @message_post.thread_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_post_path(@message_post) %> |
+<%= link_to 'Back', message_posts_path %>

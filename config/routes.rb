@@ -1,4 +1,19 @@
 Foruby::Application.routes.draw do
+  resources :message_posts
+
+  resources :message_threads
+
+  resources :forums
+
+  resources :users
+	
+	resources :sessions, only: [:new, :create, :destroy, :get]
+	
+	match '/signin',  to: 'sessions#new'
+	match '/signout', to: 'sessions#destroy', via: :delete
+	
+	match '/signup',  to: 'users#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

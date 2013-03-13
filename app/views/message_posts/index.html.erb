@@ -1,0 +1,25 @@
+<h1>Listing message_posts</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Thread</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @message_posts.each do |message_post| %>
+  <tr>
+    <td><%= message_post.content %></td>
+    <td><%= message_post.thread_id %></td>
+    <td><%= link_to 'Show', message_post %></td>
+    <td><%= link_to 'Edit', edit_message_post_path(message_post) %></td>
+    <td><%= link_to 'Destroy', message_post, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message post', new_message_post_path %>
