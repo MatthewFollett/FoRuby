@@ -65,20 +65,27 @@ p {
 
 /* header */ 
 
-#logo {
+#logo1 {
   float: left;
-  margin-right: 10px;
   font-size: 1.7em;
   color: white;
-  text-transform: uppercase;
+  
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-  & :hover {
-    color: white;
-    text-decoration: none;
-  }
+}
+
+#logo2 {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: red;
+  
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
 }
 
 /* footer */ 

@@ -1,4 +1,6 @@
 Foruby::Application.routes.draw do
+	root to: 'static_page#home'
+	
   resources :message_posts
 
   resources :message_threads
