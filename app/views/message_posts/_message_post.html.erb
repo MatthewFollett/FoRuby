@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
-<div class="message_thread">
-
-<p class="message_poster_author" valign=center>
-	Posted by <%= link_to message_post.author.name, message_post.author%> at <%= message_post.created_at.strftime("%l:%M%P - %B %d, %Y") %>
-	<%= link_to (gravatar_for message_post.author, size: 13), message_post.author%>
-</p>
-
-<p class="">
-	<%= message_post.content %>
-</p>
+<table class="message_thread">
+	<tr>
+		<td>
+			<%= render message_post.author %>
+		</td>
+		<td>
+			<p class="message_poster_author" valign=center>
+				<%= message_post.content %>
+			</p>
+		</td>
+	</tr>
+</table>

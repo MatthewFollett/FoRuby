@@ -18,8 +18,15 @@
 
 <%= render @message_thread.message_posts %>
 
+<hr>
 
+<%= form_for(:message_post, url: message_posts_path) do |f| %> 
 
+	<%= f.label "Comment" %> 
+	<%= f.text_area :content %> 
+	
+	<%= f.hidden_field :message_thread_id %>
+	<%= hidden_field_tag :message_thread_id, @message_thread.id  %>
 
-<%= link_to 'Edit', edit_message_thread_path(@message_thread) %> |
-<%= link_to 'Back', message_threads_path %>
+	<%= f.submit "Submit Comment", class: "btn btn-large btn-primary" %> 
+<% end %> 

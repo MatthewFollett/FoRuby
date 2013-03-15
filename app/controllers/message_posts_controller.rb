@@ -40,7 +40,9 @@ class MessagePostsController < ApplicationController
   # POST /message_posts
   # POST /message_posts.json
   def create
+		params[:message_post][:message_thread_id] = params["message_thread_id"]
     @message_post = MessagePost.new(params[:message_post])
+		@message_post.author_id = current_user.id
 
     respond_to do |format|
       if @message_post.save
@@ -57,7 +59,7 @@ class MessagePostsController < ApplicationController
   # PUT /message_posts/1.json
   def update
     @message_post = MessagePost.find(params[:id])
-
+		
     respond_to do |format|
       if @message_post.update_attributes(params[:message_post])
         format.html { redirect_to @message_post, notice: 'Message post was successfully updated.' }
