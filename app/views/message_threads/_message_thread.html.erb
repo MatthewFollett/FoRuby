@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+<div class="message_thread">
+<p class="message_thread_title">
+  <%= link_to message_thread.title, message_thread %>
+</p>
+
+<p class="message_thread_author" valign=center>
+	Posted by <%= link_to message_thread.author.name, message_thread.author%>
+	<%= link_to (gravatar_for message_thread.author, size: 13), message_thread.author%>
+</p>
+
+<p class="message_thread_date_posted">
+	<!-- 12:59pm - March 15, 2013 -->
+	<%= message_thread.created_at.strftime("%l:%M%P - %B %d, %Y") %>
+</p>

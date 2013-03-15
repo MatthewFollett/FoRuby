@@ -16,8 +16,12 @@
     <%= f.text_field :content %>
   </div>
   <div class="field">
-    <%= f.label :thread_id %><br />
-    <%= f.number_field :thread_id %>
+    <%= f.label :message_thread_id %><br />
+    <%= f.number_field :message_thread_id %>
+  </div>
+<div class="field">
+    <%= f.label :author_id %><br />
+    <%= f.number_field :author_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

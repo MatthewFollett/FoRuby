@@ -12,7 +12,7 @@
 <% @message_posts.each do |message_post| %>
   <tr>
     <td><%= message_post.content %></td>
-    <td><%= message_post.thread_id %></td>
+    <td><%= message_post.message_thread_id %></td>
     <td><%= link_to 'Show', message_post %></td>
     <td><%= link_to 'Edit', edit_message_post_path(message_post) %></td>
     <td><%= link_to 'Destroy', message_post, confirm: 'Are you sure?', method: :delete %></td>

@@ -1,5 +1,5 @@
-<% provide(:title, @forum.title) %>
 <p id="notice"><%= notice %></p>
+
 <p>
   <b>Title:</b>
   <%= @forum.title %>
@@ -10,7 +10,6 @@
   <%= @forum.description %>
 </p>
 
-<%= render @forum.message_threads %>
 
 <%= link_to 'Edit', edit_forum_path(@forum) %> |
 <%= link_to 'Back', forums_path %>

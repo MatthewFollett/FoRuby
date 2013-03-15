@@ -1,4 +1,3 @@
-<% provide(:title, "#{@message_thread.forum.title} | #{@message_thread.title}") %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -15,10 +14,6 @@
   <b>Forum:</b>
   <%= @message_thread.forum_id %>
 </p>
-
-<%= render @message_thread.message_posts %>
-
-
 
 
 <%= link_to 'Edit', edit_message_thread_path(@message_thread) %> |

@@ -1,0 +1,11 @@
+<div class="center hero-unit foruby-hero-unit"> 
+	<h1>Welcome to <font class="logo1">Fo</font><font class="logo2">Ruby</font></h1>
+	<h2> A <font class="logo1">For</font>um Project Written in <font class="logo2">Ruby</font> </h2>
+
+	<% if !signed_in? %>
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+	<%else %>
+		<div> You are logged in as <%= @current_user.name %>. </div>
+	<% end %>
+	<%= render Forum.all %>
+</div> 
