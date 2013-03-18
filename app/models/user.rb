@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
 
-	has_many :message_posts
+	has_many :message_posts, :class_name => 'MessagePost', :foreign_key => "author_id"
 	has_many :message_threads
 	
   before_save { |user| user.email = email.downcase }
@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true 
+	
+	def post_count
+		message_posts.size
+	end
 	
 	private 
     def create_remember_token

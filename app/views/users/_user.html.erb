@@ -1,11 +1,11 @@
 <table>
 	<tr>
-		<td valign="top">
+		<td valign="top" align=left>
 			<%= link_to (gravatar_for user), user%>
 		</td>
-		<td valign="top">
+		<td valign="top" align=left  width=100>
 				<%= link_to user.name, user%>
-				<p>Post Count: 7</p>
+				<p>Posts: <%= user.message_posts.size %> </p>
 		</td>
 	</tr>
 </table>

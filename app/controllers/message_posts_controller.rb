@@ -1,4 +1,6 @@
 class MessagePostsController < ApplicationController
+	before_filter :signed_in_user, only: [:create, :destroy, :edit, :new]
+
   # GET /message_posts
   # GET /message_posts.json
   def index
@@ -46,7 +48,7 @@ class MessagePostsController < ApplicationController
 
     respond_to do |format|
       if @message_post.save
-        format.html { redirect_to @message_post, notice: 'Message post was successfully created.' }
+        format.html { redirect_to @message_post.message_thread, notice: 'Message post was successfully created.' }
         format.json { render json: @message_post, status: :created, location: @message_post }
       else
         format.html { render action: "new" }

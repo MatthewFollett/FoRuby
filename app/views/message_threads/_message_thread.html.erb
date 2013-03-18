@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="message_thread">
 <p class="message_thread_title">
   <%= link_to message_thread.title, message_thread %>
@@ -13,3 +12,7 @@
 	<!-- 12:59pm - March 15, 2013 -->
 	<%= message_thread.created_at.strftime("%l:%M%P - %B %d, %Y") %>
 </p>
+
+<p> Total replies: <%= message_thread.message_posts.size %> </p>
+<p> Last reply at <%= message_thread.message_posts[-1].created_at.strftime("%l:%M%P - %B %d, %Y") %> </p>
+

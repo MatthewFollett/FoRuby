@@ -1,6 +1,4 @@
 <% provide(:title, "#{@message_thread.forum.title} | #{@message_thread.title}") %>
-<p id="notice"><%= notice %></p>
-
 <p>
   <%= link_to @message_thread.forum.title, @message_thread.forum %> >> <%= @message_thread.title %>
 </p>
