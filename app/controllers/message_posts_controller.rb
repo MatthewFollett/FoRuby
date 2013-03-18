@@ -1,5 +1,6 @@
 class MessagePostsController < ApplicationController
-	before_filter :signed_in_user, only: [:create, :destroy, :edit, :new]
+	before_filter :signed_in_user, only: [:create, :destroy, :new]
+	before_filter :can_edit?, only: [:edit, :update]
 
   # GET /message_posts
   # GET /message_posts.json
@@ -84,4 +85,9 @@ class MessagePostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	def can_edit?
+		@message_post = MessagePost.find(params[:id])
+		(current_user.id == @message_post.author_id)
+	end
 end
