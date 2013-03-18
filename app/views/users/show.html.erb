@@ -13,7 +13,5 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h1> Post History </h1>
+<%= render @user.message_posts.reverse %>
