@@ -12,5 +12,20 @@
 
 <%= render @forum.message_threads %>
 
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
-<%= link_to 'Back', forums_path %>
+<% if signed_in? %>
+	<%= form_for(:message_thread, url: message_threads_path) do |f| %> 
+
+		<%= f.label "Title:" %> 
+		<%= f.text_field :title %> 
+		
+		<%= f.label "Comment" %> 
+		<%= f.text_area :content %> 
+		
+		<%= f.hidden_field :forum_id %>
+		<%= hidden_field_tag :forum_id, @forum.id  %>
+
+		<%= f.submit "Submit Topic", class: "btn btn-large btn-primary" %> 
+	<% end %>
+<% else %>
+	<p> You need to <%= link_to 'Sign in', signin_path %> or <%= link_to 'Sign up', signup_path %> to leave a post.</p>
+<% end %>

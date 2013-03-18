@@ -40,12 +40,25 @@ class MessageThreadsController < ApplicationController
   # POST /message_threads
   # POST /message_threads.json
   def create
+		params[:message_thread][:forum_id] = params["forum_id"]
+		content = params[:message_thread]["content"]
+		params[:message_thread].delete "content"
     @message_thread = MessageThread.new(params[:message_thread])
+		@message_thread.author_id = current_user.id
 
     respond_to do |format|
       if @message_thread.save
-        format.html { redirect_to @message_thread, notice: 'Message thread was successfully created.' }
-        format.json { render json: @message_thread, status: :created, location: @message_thread }
+				message_post = MessagePost.new
+				message_post.content = content
+				message_post.message_thread_id = @message_thread.id
+				message_post.author_id = current_user.id
+				if message_post.save
+					format.html { redirect_to @message_thread}
+					format.json { render json: @message_thread, status: :created, location: @message_thread }
+				else
+					format.html { render action: "new" }
+					format.json { render json: @message_thread.errors, status: :unprocessable_entity }
+				end
       else
         format.html { render action: "new" }
         format.json { render json: @message_thread.errors, status: :unprocessable_entity }

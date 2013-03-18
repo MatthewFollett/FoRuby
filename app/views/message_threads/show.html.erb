@@ -2,31 +2,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @message_thread.title %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= @message_thread.author_id %>
-</p>
-
-<p>
-  <b>Forum:</b>
-  <%= @message_thread.forum_id %>
+  <%= link_to @message_thread.forum.title, @message_thread.forum %> >> <%= @message_thread.title %>
 </p>
 
 <%= render @message_thread.message_posts %>
 
 <hr>
+<% if signed_in? %>
+	<%= form_for(:message_post, url: message_posts_path) do |f| %> 
 
-<%= form_for(:message_post, url: message_posts_path) do |f| %> 
+		<%= f.label "Comment" %> 
+		<%= f.text_area :content %> 
+		
+		<%= f.hidden_field :message_thread_id %>
+		<%= hidden_field_tag :message_thread_id, @message_thread.id  %>
 
-	<%= f.label "Comment" %> 
-	<%= f.text_area :content %> 
-	
-	<%= f.hidden_field :message_thread_id %>
-	<%= hidden_field_tag :message_thread_id, @message_thread.id  %>
-
-	<%= f.submit "Submit Comment", class: "btn btn-large btn-primary" %> 
-<% end %> 
+		<%= f.submit "Submit Comment", class: "btn btn-large btn-primary" %> 
+	<% end %>
+<% else %>
+	<p> You need to <%= link_to 'Sign in', signin_path %> or <%= link_to 'Sign up', signup_path %> to leave a post.</p>
+<% end %>
