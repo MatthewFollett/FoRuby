@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
 
-	has_many :message_posts, :class_name => 'MessagePost', :foreign_key => "author_id"
-	has_many :message_threads
+	has_many :message_posts, :class_name => 'MessagePost', :foreign_key => "author_id", dependent: :destroy
+	has_many :message_threads, :foreign_key => "author_id", dependent: :destroy
 	
   before_save { |user| user.email = email.downcase }
 	before_save :create_remember_token
