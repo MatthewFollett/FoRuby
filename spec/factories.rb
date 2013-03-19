@@ -10,4 +10,9 @@ FactoryGirl.define do
     content "Lorem ipsum"
     author :user
   end 
+	
+	factory :message_thread do 
+    title "Lorem ipsum"
+    author :user
+  end 
 end
