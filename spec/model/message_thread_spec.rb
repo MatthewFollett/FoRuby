@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
-
 require 'spec_helper'
 
 describe MessageThread do 
@@ -25,10 +14,10 @@ describe MessageThread do
 	describe "message posts relations" do
 		before {@message_thread.save}
 		let!(:old_post) do
-			FactoryGirl.create(:message_post, author: @user, created_at: 1.day.ago)
+			FactoryGirl.create(:message_post, author: @user, created_at: 1.day.ago,message_thread: @message_thread)
 		end
 		let!(:new_post) do
-			FactoryGirl.create(:message_post, author: @user, created_at: 1.hour.ago)
+			FactoryGirl.create(:message_post, author: @user, created_at: 1.hour.ago, message_thread: @message_thread)
 		end
 		it "should have the right microposts in the right order" do
 			@message_thread.message_posts.should == [old_post, new_post]
