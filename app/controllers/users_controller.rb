@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
 			sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to the FoRuby!"
       redirect_to @user
     else 
       render 'new'
@@ -57,7 +57,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+				flash[:success] = 'User was successfully updated.'
+				sign_in @user
+        format.html { redirect_to @user }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
