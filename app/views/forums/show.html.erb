@@ -10,7 +10,9 @@
   <%= @forum.description %>
 </p>
 
-<%= render @forum.message_threads %>
+<%= render @message_threads%>
+
+<%= will_paginate @message_threads %>
 
 <% if signed_in? %>
 	<%= form_for(:message_thread, url: message_threads_path) do |f| %> 

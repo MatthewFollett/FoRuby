@@ -14,6 +14,7 @@ class ForumsController < ApplicationController
   # GET /forums/1.json
   def show
     @forum = Forum.find(params[:id])
+		@message_threads = @forum.message_threads.paginate(:page => params[:page], :per_page => 20)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @forum }
