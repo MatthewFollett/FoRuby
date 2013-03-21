@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+	default_scope order: 'users.name ASC'
+  
+	attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
 
 	has_many :message_posts, :class_name => 'MessagePost', :foreign_key => "author_id", dependent: :destroy
@@ -18,6 +20,10 @@ class User < ActiveRecord::Base
 	
 	def post_count
 		message_posts.size
+	end
+	
+	def is_admin?
+		name == "Admin"
 	end
 	
 	private 
