@@ -1,0 +1,20 @@
+<table class="message_thread">
+	<tr>
+		<td/>
+		<td>
+			Submitted <%= message_post.created_at.strftime("%l:%M%P - %B %d, %Y") %>
+		</td>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" width="170px">
+			<%= render message_post.author %>
+		</td>
+		<td>
+			<p class="message_poster_author" valign=center>
+				<%= message_post.content %>
+			</p>
+		</td>
+	</tr>
+</table>
+<hr>

@@ -3,8 +3,10 @@
   <%= link_to @message_thread.forum.title, @message_thread.forum %> >> <%= @message_thread.title %>
 </p>
 
-<%= render @message_thread.message_posts %>
-
+<% if @posts.any? %> 
+    <%= render partial: 'shared/message_post', collection: @posts %> 
+<% end %>
+<%= will_paginate @posts %>
 <hr>
 <% if signed_in? %>
 	<%= form_for(:message_post, url: message_posts_path) do |f| %> 

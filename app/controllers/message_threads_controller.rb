@@ -2,8 +2,8 @@ class MessageThreadsController < ApplicationController
   # GET /message_threads
   # GET /message_threads.json
   def index
-    @message_threads = MessageThread.all
-
+    @message_threads = MessageThread.paginate(page: params[:page])
+		
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @message_threads }
@@ -14,6 +14,7 @@ class MessageThreadsController < ApplicationController
   # GET /message_threads/1.json
   def show
     @message_thread = MessageThread.find(params[:id])
+		@posts = @message_thread.message_posts.paginate(:page => params[:page], :per_page => 20)
 
     respond_to do |format|
       format.html # show.html.erb
