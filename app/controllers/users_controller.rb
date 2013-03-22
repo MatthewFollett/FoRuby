@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+		if params[:id].is_number?
+			@user = User.find(params[:id])
+		else
+			@user = User.find_by_name(params[:id])
+		end
 
     respond_to do |format|
       format.html # show.html.erb
