@@ -50,6 +50,7 @@ class MessagePostsController < ApplicationController
     respond_to do |format|
       if @message_post.save
         format.html { redirect_to @message_post.message_thread, notice: 'Message post was successfully created.' }
+				format.js   {}
         format.json { render json: @message_post, status: :created, location: @message_post }
       else
         format.html { render action: "new" }
