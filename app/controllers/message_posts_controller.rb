@@ -52,7 +52,7 @@ class MessagePostsController < ApplicationController
 		Rails.logger.info("Message Thread Length: #{@message_thread.message_posts.length}")
 		Rails.logger.info("Messages: #{@message_thread.message_posts}")
 		Rails.logger.info("Last Message: #{params['last_message_post']}")
-		range = Range.new(Integer(params["last_message_post"]), -1)
+		range = Range.new(Integer(params["last_message_post"])+1, -1)
 		@new_message_posts = @message_thread.message_posts[range]
 
     respond_to do |format|
