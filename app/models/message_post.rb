@@ -5,4 +5,8 @@ class MessagePost < ActiveRecord::Base
 	
   validates :author_id, presence: true 
 	validates :content, presence: true
+	
+	def last_message_post
+		message_thread.message_posts
+	end
 end

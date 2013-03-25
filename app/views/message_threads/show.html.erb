@@ -17,6 +17,8 @@
 		
 		<%= f.hidden_field :message_thread_id %>
 		<%= hidden_field_tag :message_thread_id, @message_thread.id  %>
+		
+		<%= hidden_field_tag "last_message_post", @message_thread.message_posts.length-1  %>
 
 		<%= f.submit "Submit Comment", class: "btn btn-large btn-primary" %> 
 	<% end %>

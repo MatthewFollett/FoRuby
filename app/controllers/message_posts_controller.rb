@@ -46,9 +46,18 @@ class MessagePostsController < ApplicationController
 		params[:message_post][:message_thread_id] = params["message_thread_id"]
     @message_post = MessagePost.new(params[:message_post])
 		@message_post.author_id = current_user.id
+		
+		@message_thread = @message_post.message_thread
+		
+		Rails.logger.info("Message Thread Length: #{@message_thread.message_posts.length}")
+		Rails.logger.info("Messages: #{@message_thread.message_posts}")
+		Rails.logger.info("Last Message: #{params['last_message_post']}")
+		range = Range.new(Integer(params["last_message_post"]), -1)
+		@new_message_posts = @message_thread.message_posts[range]
 
     respond_to do |format|
       if @message_post.save
+				@new_message_posts.push(@message_post)
         format.html { redirect_to @message_post.message_thread, notice: 'Message post was successfully created.' }
 				format.js   {}
         format.json { render json: @message_post, status: :created, location: @message_post }
