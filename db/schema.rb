@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130315190556) do
     t.integer  "user_level"
   end
 
+  add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

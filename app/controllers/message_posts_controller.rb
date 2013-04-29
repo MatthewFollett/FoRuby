@@ -98,6 +98,7 @@ class MessagePostsController < ApplicationController
 	
 	def can_edit?
 		@message_post = MessagePost.find(params[:id])
-		(current_user.id == @message_post.author_id)
+		is_user = (current_user.id == @message_post.author_id)
+		redirect_to root_path if not is_user
 	end
 end

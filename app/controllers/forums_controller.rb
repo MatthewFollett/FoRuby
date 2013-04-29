@@ -1,4 +1,5 @@
 class ForumsController < ApplicationController
+	before_filter :admin_user_only, only: [:create, :edit, :destroy, :index, :update]
   # GET /forums
   # GET /forums.json
   def index
@@ -80,4 +81,9 @@ class ForumsController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	private
+		def admin_user_only
+			redirect_to root_path if not current_user.is_admin?
+		end
 end
